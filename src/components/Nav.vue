@@ -15,6 +15,10 @@
 </script>
 
 <style scoped>
+  nav {
+    background-color: #ececec;
+  }
+
   a, a:visited, a:active {
     color: #2c3e50;
     text-decoration: none;
