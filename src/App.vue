@@ -1,15 +1,26 @@
 <template>
   <div id="app">
     <app-nav />
-    <router-view/>
+    <div class="view-container">
+      <div class="view-content">
+        <router-view/>
+      </div>
+      <div class="view-sidebar">
+        <cart />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import AppNav from './components/Nav'
+import Cart from './components/Cart'
 
 export default {
-  components: {AppNav},
+  components: {
+    Cart,
+    AppNav
+  },
   name: 'app'
 }
 </script>
@@ -21,6 +32,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  min-height: 90vh;
 }
+
+  .view-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .view-content {
+    flex: 2 0;
+  }
+
+  .view-sidebar {
+    flex: 1 0;
+  }
 </style>
