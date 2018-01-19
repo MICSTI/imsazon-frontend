@@ -35,4 +35,3 @@ export default {
   actions,
   mutations
 }
-
