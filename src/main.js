@@ -4,11 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+
+import httpPlugin from './plugins/http'
 import currency from './helpers/currency'
 
 Vue.config.productionTip = false
 
 // init global config
+Vue.use(httpPlugin)
+
 Vue.filter('currency', currency)
 
 /* eslint-disable no-new */
