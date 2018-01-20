@@ -1,10 +1,10 @@
 <template>
     <ul>
       <li v-for="product in products">
-        {{ product.name }} - {{ product.price | currency }}
+        {{ product.Name }} - {{ product.Price | currency }}
         <br/>
         <button
-          :disabled="!product.quantity"
+          :disabled="!product.Quantity"
           @click="addToCart(product)">
           Add to cart
         </button>

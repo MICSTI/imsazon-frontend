@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default {
-  install (Vue) {
+  install (Vue, options) {
     Vue.$http = axios
   }
 }
