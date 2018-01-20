@@ -1,7 +1,15 @@
 <template>
-    <div>
-      Boats boats boats!
-    </div>
+    <ul>
+      <li v-for="product in products">
+        {{ product.name }} - {{ product.price | currency }}
+        <br/>
+        <button
+          :disabled="!product.quantity"
+          @click="addToCart(product)">
+          Add to cart
+        </button>
+      </li>
+    </ul>
 </template>
 
 <script>
