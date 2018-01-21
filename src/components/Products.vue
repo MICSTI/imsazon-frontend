@@ -2,22 +2,22 @@
     <ul>
       <li v-for="product in products">
         <div class="product-image-container">
-          <img :src="product.ImageUrl" width="56" height="56" />
+          <img :src="product.imageUrl" width="56" height="56" />
         </div>
 
         <div class="product-detail">
-          <div class="product-name">{{ product.Name }}</div>
-          <div class="product-description">{{ product.Description }}</div>
+          <div class="product-name">{{ product.name }}</div>
+          <div class="product-description">{{ product.description }}</div>
         </div>
 
         <div class="product-price">
-          <div class="product-price-display">{{ product.Price | currency }}</div>
-          <div class="product-quantity"><span v-bind:class="{ red: product.Quantity <= 3 }"><span v-if="product.Quantity <= 3">only </span>{{product.Quantity}} available</span></div>
+          <div class="product-price-display">{{ product.price | currency }}</div>
+          <div class="product-quantity"><span v-bind:class="{ red: product.quantity <= 3 }"><span v-if="product.quantity <= 3">only </span>{{product.quantity}} available</span></div>
         </div>
 
         <div class="product-add">
           <button
-            :disabled="!product.Quantity"
+            :disabled="!product.quantity"
             @click="addToCart(product)">
             Add
           </button>
