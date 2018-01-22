@@ -1,9 +1,9 @@
 <template>
     <nav>
       <ul>
-        <li><a href="#/home">Home</a></li>
-        <li><a href="#/products">Products</a></li>
-        <li><a href="#/orders">Orders</a></li>
+        <li><router-link to="/home">Home</router-link></li>
+        <li><router-link to="/products">Products</router-link></li>
+        <li><router-link to="/orders">Orders</router-link></li>
       </ul>
     </nav>
 </template>
@@ -20,6 +20,7 @@
   }
 
   a, a:visited, a:active {
+    font-weight: bold;
     color: #2c3e50;
     text-decoration: none;
     transition: color .2s linear;
@@ -38,5 +39,9 @@
     display: inline-block;
     margin: .4em .8em;
     font-size: 16pt;
+  }
+
+  .router-link-active {
+    color: #76b82a !important;
   }
 </style>
