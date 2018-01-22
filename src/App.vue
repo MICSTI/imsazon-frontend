@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <app-nav />
+    <header>
+      <app-nav />
+    </header>
     <div class="view-container">
       <div class="view-content">
         <router-view/>
@@ -26,14 +28,18 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  min-height: 90vh;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    min-height: 90vh;
+  }
+
+  header {
+    background-color: #ececec;
+  }
 
   .view-container {
     width: 100%;

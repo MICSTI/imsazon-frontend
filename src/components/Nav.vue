@@ -1,10 +1,21 @@
 <template>
     <nav>
-      <ul>
-        <li><router-link to="/home">Home</router-link></li>
-        <li><router-link to="/products">Products</router-link></li>
-        <li><router-link to="/orders">Orders</router-link></li>
-      </ul>
+      <div class="imsazon-brand">
+        IMSazon
+      </div>
+
+      <div class="main-nav">
+        <ul>
+          <li><router-link to="/home">Home</router-link></li>
+          <li><router-link to="/products">Products</router-link></li>
+          <li><router-link to="/orders">Orders</router-link></li>
+        </ul>
+      </div>
+
+      <div class="user-profile">
+        <i class="material-icons">account_circle</i>
+        <div class="profile-link">Max Mustermann</div>
+      </div>
     </nav>
 </template>
 
@@ -16,7 +27,32 @@
 
 <style scoped>
   nav {
-    background-color: #ececec;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .imsazon-brand {
+    flex: 2 0;
+
+    color: #76b82a;
+    font-weight: bold;
+    font-size: 20pt;
+  }
+
+  .main-nav {
+    flex: 7 0;
+  }
+
+  .user-profile {
+    flex: 2 0;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .profile-link {
+    margin-left: .6em;
   }
 
   a, a:visited, a:active {
