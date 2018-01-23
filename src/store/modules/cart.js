@@ -57,6 +57,14 @@ const mutations = {
     }
   },
 
+  [types.REMOVE_FROM_CART] (state, { id }) {
+    const recordIdx = state.added.findIndex(product => product.id === id)
+
+    if (recordIdx >= 0) {
+      state.added.splice(recordIdx, 1)
+    }
+  },
+
   [types.SET_CART_ITEMS] (state, { items }) {
     state.added = items
   },

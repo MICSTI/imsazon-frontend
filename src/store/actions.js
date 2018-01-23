@@ -7,3 +7,9 @@ export const addToCart = ({ commit }, product) => {
     })
   }
 }
+
+export const removeFromCart = ({ commit }, product) => {
+  commit(types.REMOVE_FROM_CART, {
+    id: product.id
+  })
+}

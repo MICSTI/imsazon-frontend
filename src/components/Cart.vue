@@ -3,6 +3,8 @@
     <ul>
       <li v-for="product in cart">
         {{product}}
+        <br/>
+        <span @click="removeFromCart(product)"><a href="#">Remove</a></span>
       </li>
     </ul>
 
