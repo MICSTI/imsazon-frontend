@@ -16,7 +16,7 @@
         </div>
 
         <div class="product-add">
-          <input type="text" v-model="product.toBeAdded" />
+          <input type="text" v-model="product.toBeAdded" size="2" />
 
           <button
             :disabled="!product.quantity"
@@ -91,6 +91,12 @@
 
   .product-add {
     flex: 1 0;
+
+    display: flex;
+  }
+
+  .product-add input[type=text] {
+    margin-right: 4px;
   }
 
   .product-name {
