@@ -16,9 +16,11 @@
         </div>
 
         <div class="product-add">
+          <input type="text" v-model="product.toBeAdded" />
+
           <button
             :disabled="!product.quantity"
-            @click="addToCart({product: product, quantity: 1})">
+            @click="addToCart(product)">
             Add
           </button>
         </div>

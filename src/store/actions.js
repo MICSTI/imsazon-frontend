@@ -1,10 +1,11 @@
 import * as types from './mutation-types'
 
-export const addToCart = ({ commit }, payload) => {
-  if (payload.product.quantity > 0) {
+export const addToCart = ({ commit }, product) => {
+  const toBeAdded = Number(product.toBeAdded) || 1
+  if ((product.quantity - toBeAdded) > 0) {
     commit(types.ADD_TO_CART, {
-      id: payload.product.id,
-      quantity: payload.quantity
+      id: product.id,
+      quantity: toBeAdded
     })
   }
 }
