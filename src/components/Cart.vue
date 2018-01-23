@@ -18,6 +18,10 @@
     <div class="total-container" v-if="cart.length > 0">
       Total: <b>{{total | currency}}</b>
     </div>
+
+    <div class="checkout-container" v-if="cart.length > 0">
+      <button>Checkout</button>
+    </div>
   </div>
 </template>
 
