@@ -5,6 +5,10 @@
         {{product}}
       </li>
     </ul>
+
+    <div class="total-container">
+      Total: <b>{{total | currency}}</b>
+    </div>
   </div>
 </template>
 
@@ -13,7 +17,8 @@
 
     export default {
       computed: mapGetters({
-        cart: 'cartProducts'
+        cart: 'cartProducts',
+        total: 'cartTotalPrice'
       }),
       methods: mapActions([
         'removeFromCart'
