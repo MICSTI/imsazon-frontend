@@ -2,9 +2,11 @@
   <div class="cart-side">
     <ul v-if="cart.length > 0">
       <li v-for="product in cart">
-        {{product}}
-        <br/>
-        <span @click="removeFromCart(product)"><a href="#">Remove</a></span>
+        <div class="cart-item">
+          <div class="cart-item-name">{{product.name}}</div>
+          <div class="cart-item-quantity-price"><span class="item-quantity">{{product.quantity}}</span> x {{product.price | currency}}</div>
+          <div class="cart-item-remove" @click="removeFromCart(product)"><a href="#">X</a></div>
+        </div>
       </li>
     </ul>
     <div class="list-no-items" v-else>
@@ -51,5 +53,33 @@
     color: #555;
     font-size: .85em;
     padding: .7em .7em 0 .7em;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    padding: .8em 0;
+  }
+
+  .cart-item-name {
+    flex: 4 0;
+  }
+
+  .cart-item-quantity-price {
+    flex: 4 0;
+  }
+
+  .cart-item-remove {
+    flex: 1 0;
+  }
+
+  .item-quantity {
+    color: #444;
   }
 </style>
