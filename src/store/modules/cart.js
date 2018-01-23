@@ -42,7 +42,7 @@ const actions = {
 
 // mutations
 const mutations = {
-  [types.ADD_TO_CART] (state, { id }) {
+  [types.ADD_TO_CART] (state, { id, quantity }) {
     state.checkoutStatus = null
 
     const record = state.added.find(product => product.id === id)
@@ -50,10 +50,10 @@ const mutations = {
     if (!record) {
       state.added.push({
         id,
-        quantity: 1
+        quantity: quantity
       })
     } else {
-      record.quantity++
+      record.quantity += quantity
     }
   },
 

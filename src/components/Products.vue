@@ -18,7 +18,7 @@
         <div class="product-add">
           <button
             :disabled="!product.quantity"
-            @click="addToCart(product)">
+            @click="addToCart({product: product, quantity: 1})">
             Add
           </button>
         </div>

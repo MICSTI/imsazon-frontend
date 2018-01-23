@@ -30,12 +30,12 @@ const mutations = {
     state.all = products
   },
 
-  [types.ADD_TO_CART] (state, { id }) {
-    state.all.find(product => product.id === id).quantity--
+  [types.ADD_TO_CART] (state, { id, quantity }) {
+    state.all.find(product => product.id === id).quantity -= quantity
   },
 
-  [types.REMOVE_FROM_CART] (state, { id }) {
-    const item = state.all.find(product => product.id === id)
+  [types.REMOVE_FROM_CART] (state, { id, quantity }) {
+    state.all.find(product => product.id === id).quantity += quantity
   }
 }
 
