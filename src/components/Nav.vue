@@ -13,14 +13,33 @@
       </div>
 
       <div class="user-profile">
-        <i class="material-icons">account_circle</i>
-        <div class="profile-link">Max Mustermann</div>
+        <div class="user-profile-logged-in" v-if="user">
+          <i class="material-icons">account_circle</i>
+          <div class="profile-link">{{user.name}}</div>
+        </div>
+        <div class="user-profile-not-logged-in" v-else>
+          Login
+        </div>
       </div>
     </nav>
 </template>
 
 <script>
+    import { mapGetters, mapActions } from 'vuex'
+
     export default {
+      computed: {
+        ...mapGetters({
+          user: 'user'
+        })
+      },
+      methods: {
+        ...mapActions([
+        ])
+      },
+      created () {
+        this.$store.dispatch('getUser')
+      },
       name: 'app-nav'
     }
 </script>
@@ -46,7 +65,9 @@
 
   .user-profile {
     flex: 2 0;
+  }
 
+  .user-profile-logged-in {
     display: flex;
     align-items: center;
   }
@@ -79,5 +100,9 @@
 
   .router-link-active {
     color: #76b82a !important;
+  }
+
+  .profile-link {
+    font-weight: bold;
   }
 </style>
