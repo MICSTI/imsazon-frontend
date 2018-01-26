@@ -12,7 +12,7 @@
 
         <div class="product-price">
           <div class="product-price-display">{{ product.price | currency }}</div>
-          <div class="product-quantity"><span v-bind:class="{ red: product.quantity <= 3 }"><span>{{itemsLeft(product)}}</span></span></div>
+          <div class="product-quantity"><span v-bind:class="{ red: product.quantity <= 3 }"><span>{{itemsLeft(product.quantity)}}</span></span></div>
         </div>
 
         <div class="product-add">
@@ -38,11 +38,11 @@
       })
     },
     methods: {
-      itemsLeft (product) {
-        if (product.quantity > 3) {
-          return `${product.quantity} available`
-        } else if (product.quantity > 0) {
-          return `only ${product.quantity} available`
+      itemsLeft (quantity) {
+        if (quantity > 3) {
+          return `${quantity} available`
+        } else if (quantity > 0) {
+          return `only ${quantity} available`
         } else {
           return `currently not available`
         }
