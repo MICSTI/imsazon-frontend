@@ -37,6 +37,13 @@ const router = new Router({
       }
     },
     {
+      path: '/logout',
+      beforeEnter (to, from, next) {
+        authHelper.setToken(null)
+        next('/')
+      }
+    },
+    {
       path: '*',
       redirect: '/home'
     }

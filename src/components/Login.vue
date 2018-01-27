@@ -22,6 +22,7 @@
 
 <script>
   import * as authHelper from '../helpers/auth'
+  import loginApi from '../api/auth'
 
   export default {
     data () {
@@ -35,13 +36,17 @@
     },
     methods: {
       performLogin () {
-        // TODO call API
+        loginApi.login(this.username, this.password)
+          .then(data => {
+            // for now, we just set the auth token
+            authHelper.setToken(data.token)
 
-        // for now, we just set the auth token
-        authHelper.setToken('fake token')
-
-        // ... and go back to the user's original query or to the home page if there was none
-        this.$router.push(this.$route.query.redirect || '/')
+            // ... and go back to the user's original query or to the home page if there was none
+            this.$router.push(this.$route.query.redirect || '/')
+          })
+          .catch(err => {
+            console.error('login error', err)
+          })
       }
     }
   }
