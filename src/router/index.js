@@ -48,15 +48,15 @@ router.beforeEach((to, from, next) => {
     // try to get token from auth helper
     const token = authHelper.getToken()
 
-    console.log('auth token', token)
-
     // TODO validate token?
     if (token) {
       next()
     } else {
       next({
         path: '/login',
-        query: to.fullPath
+        query: {
+          redirect: to.fullPath
+        }
       })
     }
   } else {

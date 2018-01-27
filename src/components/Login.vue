@@ -21,6 +21,8 @@
 </template>
 
 <script>
+  import * as authHelper from '../helpers/auth'
+
   export default {
     data () {
       return {
@@ -33,7 +35,13 @@
     },
     methods: {
       performLogin () {
-        console.log('performing login')
+        // TODO call API
+
+        // for now, we just set the auth token
+        authHelper.setToken('fake token')
+
+        // ... and go back to the user's original query or to the home page if there was none
+        this.$router.push(this.$route.query.redirect || '/')
       }
     }
   }
