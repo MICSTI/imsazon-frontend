@@ -1,5 +1,7 @@
 <template>
   <div class="cart-side">
+    <div class="section-header">Shopping cart</div>
+
     <ul v-if="cart.length > 0">
       <li v-for="product in cart">
         <div class="cart-item">
@@ -63,6 +65,12 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+  }
+
+  .section-header {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: .5em 0 1.25em 0;
   }
 
   .cart-item {
