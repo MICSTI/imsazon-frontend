@@ -18,7 +18,7 @@
           <div class="profile-link">{{user.name}}</div>
         </div>
         <div class="user-profile-not-logged-in" v-else>
-          Login
+          <router-link to="/login">Login</router-link>
         </div>
       </div>
     </nav>
@@ -38,7 +38,7 @@
         ])
       },
       created () {
-        this.$store.dispatch('getUser')
+        // this.$store.dispatch('getUser')
       },
       name: 'app-nav'
     }

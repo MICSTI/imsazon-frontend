@@ -22,12 +22,18 @@ const router = new Router({
     {
       path: '/products',
       name: 'Products',
-      component: Products
+      component: Products,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/orders',
       name: 'Orders',
-      component: Orders
+      component: Orders,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '*',
@@ -37,8 +43,14 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  // TODO check if user is logged in
-  next()
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    next({
+      path: '/login',
+      query: to.fullPath
+    })
+  } else {
+    next()
+  }
 })
 
 export default router

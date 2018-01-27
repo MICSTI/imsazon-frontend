@@ -67,5 +67,10 @@
   input {
     width: 50%;
     height: 2em;
+    padding: 0 .5em;
+  }
+
+  input[type=button] {
+    width: 54%;
   }
 </style>
