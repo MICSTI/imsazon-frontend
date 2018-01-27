@@ -1,33 +1,36 @@
 <template>
-    <ul v-if="products.length > 0">
-      <li v-for="product in products">
-        <div class="product-image-container">
-          <img :src="product.imageUrl" width="56" height="56" />
-        </div>
+    <div>
+      <h1>Products</h1>
+      <ul v-if="products.length > 0">
+        <li v-for="product in products">
+          <div class="product-image-container">
+            <img :src="product.imageUrl" width="56" height="56" />
+          </div>
 
-        <div class="product-detail">
-          <div class="product-name">{{ product.name }}</div>
-          <div class="product-description">{{ product.description }}</div>
-        </div>
+          <div class="product-detail">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-description">{{ product.description }}</div>
+          </div>
 
-        <div class="product-price">
-          <div class="product-price-display">{{ product.price | currency }}</div>
-          <div class="product-quantity"><span v-bind:class="{ red: product.quantity <= 3 }"><span>{{itemsLeft(product.quantity)}}</span></span></div>
-        </div>
+          <div class="product-price">
+            <div class="product-price-display">{{ product.price | currency }}</div>
+            <div class="product-quantity"><span v-bind:class="{ red: product.quantity <= 3 }"><span>{{itemsLeft(product.quantity)}}</span></span></div>
+          </div>
 
-        <div class="product-add">
-          <input type="text" v-model="product.toBeAdded" size="2" />
+          <div class="product-add">
+            <input type="text" v-model="product.toBeAdded" size="2" />
 
-          <button
-            :disabled="!product.quantity"
-            @click="addToCart(product)">
-            Add
-          </button>
-        </div>
-      </li>
-    </ul>
-    <div class="secondary" v-else>
-      Unfortunately, there are no products available right now. Maybe try to come back later?
+            <button
+              :disabled="!product.quantity"
+              @click="addToCart(product)">
+              Add
+            </button>
+          </div>
+        </li>
+      </ul>
+      <div class="secondary" v-else>
+        Unfortunately, there are no products available right now. Maybe try to come back later?
+      </div>
     </div>
 </template>
 
