@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul v-if="products.length > 0">
       <li v-for="product in products">
         <div class="product-image-container">
           <img :src="product.imageUrl" width="56" height="56" />
@@ -26,6 +26,9 @@
         </div>
       </li>
     </ul>
+    <div class="secondary" v-else>
+      Unfortunately, there are no products available right now. Maybe try to come back later?
+    </div>
 </template>
 
 <script>
@@ -112,5 +115,11 @@
   .product-quantity {
     font-size: .8em;
     margin-top: .3em;
+  }
+
+  .secondary {
+    color: #555;
+    padding: 3em;
+    font-size: .9em;
   }
 </style>
