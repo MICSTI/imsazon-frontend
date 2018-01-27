@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Products from '@/components/Products'
 import Orders from '@/components/Orders'
 import Login from '@/components/Login'
+import * as authHelper from '../helpers/auth'
 
 Vue.use(Router)
 
@@ -44,10 +45,20 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    next({
-      path: '/login',
-      query: to.fullPath
-    })
+    // try to get token from auth helper
+    const token = authHelper.getToken()
+
+    console.log('auth token', token)
+
+    // TODO validate token?
+    if (token) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: to.fullPath
+      })
+    }
   } else {
     next()
   }
