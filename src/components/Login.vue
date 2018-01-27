@@ -5,23 +5,38 @@
     <div class="form-inner">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username" />
+        <input type="text" id="username" ref="username" v-model="username" @keyup.enter="performLogin" />
       </div>
 
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" />
+        <input type="password" id="password" v-model="password" @keyup.enter="performLogin" />
       </div>
 
       <div class="form-group">
-        <input type="button" class="btn-signin" value="Sign in" />
+        <input type="button" class="btn-signin" value="Sign in" @click="performLogin" />
       </div>
     </div>
   </form>
 </template>
 
 <script>
-
+  export default {
+    data () {
+      return {
+        username: null,
+        password: null
+      }
+    },
+    mounted () {
+      this.$nextTick(() => this.$refs.username.focus())
+    },
+    methods: {
+      performLogin () {
+        console.log('performing login')
+      }
+    }
+  }
 </script>
 
 <style scoped>
