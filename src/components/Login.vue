@@ -38,8 +38,22 @@
       performLogin () {
         loginApi.login(this.username, this.password)
           .then(data => {
-            // for now, we just set the auth token
-            authHelper.setToken(data.token)
+            const token = data.token
+
+            // set the auth token in session storage
+            authHelper.setToken(token)
+
+            // also extract the user information from it
+            const jwtPayload = authHelper.decodeJwt(token)
+
+            const userObj = {
+              id: jwtPayload.sub,
+              name: jwtPayload.name,
+              role: jwtPayload.role
+            }
+
+            // set the user name in the state
+            this.$store.dispatch('setUser', userObj)
 
             // ... and go back to the user's original query or to the home page if there was none
             this.$router.push(this.$route.query.redirect || '/')

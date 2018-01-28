@@ -12,20 +12,14 @@ const getters = {
 
 // actions
 const actions = {
-  getUser ({ commit }) {
-    // TODO attempt to load user from session storage
-    const receivedUser = {
-      id: 1,
-      name: 'Michael'
-    }
-
-    commit(types.SET_USER, { user: receivedUser })
+  setUser ({ commit }, user) {
+    commit(types.SET_USER, user)
   }
 }
 
 // mutations
 const mutations = {
-  [types.SET_USER] (state, { user }) {
+  [types.SET_USER] (state, user) {
     state.user = user
   }
 }

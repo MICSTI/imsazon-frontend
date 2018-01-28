@@ -33,3 +33,11 @@ export const setToken = (token) => {
 export const clearCache = () => {
   cache = null
 }
+
+export const decodeJwt = (jwtString) => {
+  const base64Url = jwtString.split('.')[1]
+
+  const base64 = base64Url.replace('-', '+').replace('_', '/')
+
+  return JSON.parse(window.atob(base64))
+}

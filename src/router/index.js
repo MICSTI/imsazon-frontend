@@ -55,7 +55,6 @@ router.beforeEach((to, from, next) => {
     // try to get token from auth helper
     const token = authHelper.getToken()
 
-    // TODO validate token?
     if (token) {
       next()
     } else {
