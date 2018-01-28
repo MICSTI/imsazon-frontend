@@ -43,14 +43,7 @@
             // set the auth token in session storage
             authHelper.setToken(token)
 
-            // also extract the user information from it
-            const jwtPayload = authHelper.decodeJwt(token)
-
-            const userObj = {
-              id: jwtPayload.sub,
-              name: jwtPayload.name,
-              role: jwtPayload.role
-            }
+            const userObj = authHelper.createUserObjectFromJwtString(token)
 
             // set the user name in the state
             this.$store.dispatch('setUser', userObj)

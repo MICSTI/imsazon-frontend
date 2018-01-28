@@ -41,3 +41,14 @@ export const decodeJwt = (jwtString) => {
 
   return JSON.parse(window.atob(base64))
 }
+
+export const createUserObjectFromJwtString = (jwtString) => {
+  // extract the user information from the decoded JWT
+  const jwtPayload = decodeJwt(jwtString)
+
+  return {
+    id: jwtPayload.sub,
+    name: jwtPayload.name,
+    role: jwtPayload.role
+  }
+}

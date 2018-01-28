@@ -7,6 +7,7 @@ import store from './store'
 
 import httpPlugin from './plugins/http'
 import currency from './helpers/currency'
+import * as authHelper from './helpers/auth'
 
 Vue.config.productionTip = false
 
@@ -21,5 +22,15 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  mounted () {
+    // attempt to load auth token from session storage
+    const authToken = authHelper.getToken()
+
+    if (authToken) {
+      const userObj = authHelper.createUserObjectFromJwtString(authToken)
+
+      store.dispatch('setUser', userObj)
+    }
+  }
 })
