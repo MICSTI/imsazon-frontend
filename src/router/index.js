@@ -5,6 +5,7 @@ import Products from '@/components/Products'
 import Orders from '@/components/Orders'
 import Login from '@/components/Login'
 import * as authHelper from '../helpers/auth'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -39,7 +40,13 @@ const router = new Router({
     {
       path: '/logout',
       beforeEnter (to, from, next) {
+        // clear token in auth helper
         authHelper.setToken(null)
+
+        // clear user in store
+        store.dispatch('setUser', null)
+
+        // navigate home
         next('/')
       }
     },
