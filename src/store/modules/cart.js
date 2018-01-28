@@ -1,4 +1,5 @@
 import * as types from '../mutation-types'
+import cartApi from '../../api/cart'
 
 // initial state
 // shape: [{id, quantity}]
@@ -52,6 +53,9 @@ const mutations = {
         id,
         quantity: quantity
       })
+
+      // also call the API to notify the microservice backend about the change (we don't care about the response)
+      cartApi.putItemToCart(id, quantity)
     } else {
       record.quantity += quantity
     }
@@ -62,6 +66,9 @@ const mutations = {
 
     if (recordIdx >= 0) {
       state.added.splice(recordIdx, 1)
+
+      // also call the API to notify the microservice backend about the change (we don't care about the response)
+      cartApi.removeItemFromCart(id)
     }
   },
 
