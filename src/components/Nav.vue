@@ -16,6 +16,7 @@
         <div class="user-profile-logged-in" v-if="user">
           <i class="material-icons">account_circle</i>
           <div class="profile-link">{{user.name}}</div>
+          <i class="material-icons logout" title="Logout" @click="logout">exit_to_app</i>
         </div>
         <div class="user-profile-not-logged-in" v-else>
           <router-link to="/login">Login</router-link>
@@ -34,6 +35,9 @@
         })
       },
       methods: {
+        logout () {
+          this.$router.push('/logout')
+        },
         ...mapActions([
         ])
       },
@@ -74,6 +78,7 @@
 
   .profile-link {
     margin-left: .6em;
+    margin-right: 2em;
   }
 
   a, a:visited, a:active {
@@ -104,5 +109,16 @@
 
   .profile-link {
     font-weight: bold;
+  }
+
+  .logout {
+    color: #aaa;
+    font-size: 1.3em;
+    transition: color .2s linear;
+  }
+
+  .logout:hover {
+    color: #000;
+    cursor: pointer;
   }
 </style>
