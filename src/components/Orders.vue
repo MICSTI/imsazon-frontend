@@ -29,9 +29,9 @@
             <div class="order-detail-item-value">
               <ul class="order-items-list">
                 <li v-for="item in order.items" class="order-items-item">
-                  <div class="order-item-name">{{productById(item.Id).name}}</div>
-                  <div class="order-item-quantity">{{item.Quantity}} x</div>
-                  <div class="order-item-price">{{productById(item.Id).price | currency}}</div>
+                  <div class="order-item-name">{{productById(item.id).name}}</div>
+                  <div class="order-item-quantity">{{item.quantity}} x</div>
+                  <div class="order-item-price">{{productById(item.id).price | currency}}</div>
                 </li>
               </ul>
             </div>

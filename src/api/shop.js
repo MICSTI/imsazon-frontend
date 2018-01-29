@@ -29,6 +29,28 @@ export default {
       })
   },
 
+  createOrder (userId, items, cb) {
+    const mappedItems = items.map(item => {
+      return {
+        id: item.id,
+        quantity: item.quantity
+      }
+    })
+
+    const payload = {
+      userId,
+      items: mappedItems
+    }
+
+    Vue.$http.post(`http://localhost:8605/order/create`, payload)
+      .then(res => {
+        cb(res.data, null)
+      })
+      .catch(err => {
+        cb(null, err)
+      })
+  },
+
   getOrders (userId, cb) {
     Vue.$http.get(`http://localhost:8605/order/user/${userId}`)
       .then(res => {

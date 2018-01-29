@@ -1,5 +1,8 @@
 import * as types from '../mutation-types'
+import shop from '../../api/shop'
 import cartApi from '../../api/cart'
+import store from '../index'
+import router from '../../router'
 
 // initial state
 // shape: [{id, quantity}]
@@ -33,11 +36,20 @@ const getters = {
 
 // actions
 const actions = {
-  checkout ({ commit, state }, products) {
-    // TODO implement functionality
+  checkout ({ commit, state }) {
+    const userId = store.state.auth.user.id
 
-    // empty cart
-    commit(types.SET_CART_ITEMS, { items: [] })
+    shop.createOrder(userId, state.added, (data, err) => {
+      if (err) {
+        return console.error('create order error', err)
+      }
+
+      // empty cart
+      commit(types.SET_CART_ITEMS, { items: [] })
+
+      // go to orders page
+      router.push('/orders')
+    })
   }
 }
 

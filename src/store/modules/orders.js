@@ -14,11 +14,11 @@ const getters = {
   orderTotalPrice: (state, getters) => (order) => {
     // map order items
     const items = order.items.map(item => {
-      const product = getters.getProductById(item.Id)
+      const product = getters.getProductById(item.id)
       return {
         name: product.name,
         description: product.description,
-        quantity: item.Quantity,
+        quantity: item.quantity,
         price: product.price
       }
     })

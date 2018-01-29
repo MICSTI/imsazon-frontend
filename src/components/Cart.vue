@@ -22,7 +22,7 @@
     </div>
 
     <div class="checkout-container" v-if="cart.length > 0">
-      <button>Checkout</button>
+      <button @click="checkout">Checkout</button>
     </div>
   </div>
 </template>
@@ -35,9 +35,14 @@
         cart: 'cartProducts',
         total: 'cartTotalPrice'
       }),
-      methods: mapActions([
-        'removeFromCart'
-      ]),
+      methods: {
+        checkout () {
+          this.$store.dispatch('checkout')
+        },
+        ...mapActions([
+          'removeFromCart'
+        ])
+      },
       name: 'cart'
     }
 </script>
