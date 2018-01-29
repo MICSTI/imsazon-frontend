@@ -5,13 +5,15 @@
       <li v-for="order in orders">
         <div class="order-top-row">
           <div class="order-date">29.01.2018</div>
+          <div class="order-id">{{order.id}}</div>
           <div class="order-status">{{orderStateString(order.status)}}</div>
           <div class="order-price">price</div>
         </div>
         <div class="order-items">
           <ul v-if="order.items.length > 0">
             <li v-for="item in order.items">
-
+              <div class="order-item-name">{{item.Id}}</div>
+              <div class="order-item-quantity">{{item.Quantity}}</div>
             </li>
           </ul>
         </div>
