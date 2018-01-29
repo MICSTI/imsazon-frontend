@@ -27,5 +27,18 @@ export default {
       .catch(err => {
         cb(null, err)
       })
+  },
+
+  getOrders (userId, cb) {
+    Vue.$http.get(`http://localhost:8605/order/user/${userId}`)
+      .then(res => {
+        // map orders from response
+        const ordersResponse = res.data.orders || []
+
+        cb(ordersResponse, null)
+      })
+      .catch(err => {
+        cb(null, err)
+      })
   }
 }

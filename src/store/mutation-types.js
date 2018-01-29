@@ -7,5 +7,8 @@ export const SET_CHECKOUT_STATUS = 'SET_CHECKOUT_STATUS'
 // products
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 
+// orders
+export const RECEIVE_ORDERS = 'RECEIVE_ORDERS'
+
 // auth
 export const SET_USER = 'RECEIVE_USER'
