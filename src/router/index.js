@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Products from '@/components/Products'
 import Orders from '@/components/Orders'
 import Login from '@/components/Login'
+import Checkout from '@/components/Checkout'
 import * as authHelper from '../helpers/auth'
 import store from '../store'
 
@@ -33,6 +34,14 @@ const router = new Router({
       path: '/orders',
       name: 'Orders',
       component: Orders,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/checkout/:orderId',
+      name: 'Checkout',
+      component: Checkout,
       meta: {
         requiresAuth: true
       }
