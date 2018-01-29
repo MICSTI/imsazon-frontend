@@ -6,7 +6,7 @@
         <div class="order-top-row">
           <div class="order-detail-item">
             <div class="order-detail-item-header">Date</div>
-            <div class="order-detail-item-value">29.01.2018</div>
+            <div class="order-detail-item-value">{{order.date}}</div>
           </div>
 
           <div class="order-detail-item">
@@ -40,7 +40,7 @@
       </li>
     </ul>
     <div class="secondary" v-else>
-      Unfortunately, there are no orders to display right now. Maybe you want to order something now?
+      Unfortunately, there are no orders to display right now. Maybe you want to <router-link to="/products">order</router-link> something now?
     </div>
   </div>
 </template>
@@ -100,6 +100,17 @@
     display: flex;
     align-items: left;
     flex-direction: column;
+  }
+
+  a, a:visited, a:active {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color .2s linear;
+  }
+
+  a:hover {
+    cursor: pointer;
+    color: #76b82a;
   }
 
   .order-outline {
