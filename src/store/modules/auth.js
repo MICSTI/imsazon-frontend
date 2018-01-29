@@ -15,8 +15,8 @@ const actions = {
   setUser ({ commit, dispatch }, user) {
     commit(types.SET_USER, user)
 
-    // dispatch the order loading action
-    dispatch('getAllOrders')
+    // dispatch the product loading action
+    dispatch('getAllProducts')
   }
 }
 

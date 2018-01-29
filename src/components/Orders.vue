@@ -12,7 +12,7 @@
         <div class="order-items">
           <ul v-if="order.items.length > 0">
             <li v-for="item in order.items">
-              <div class="order-item-name">{{item.Id}}</div>
+              <div class="order-item-name">{{productById(item.Id) ? productById(item.Id).name : 'unknown'}}</div>
               <div class="order-item-quantity">{{item.Quantity}}</div>
             </li>
           </ul>
@@ -30,6 +30,9 @@
 
   export default {
     computed: {
+      productById () {
+        return this.$store.getters.getProductById
+      },
       ...mapGetters({
         orders: 'allOrders'
       })

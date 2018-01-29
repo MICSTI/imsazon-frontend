@@ -8,18 +8,24 @@ const state = {
 
 // getters
 const getters = {
-  allProducts: state => state.all
+  allProducts: state => state.all,
+  getProductById: state => (id) => {
+    return state.all.find(product => product.id === id)
+  }
 }
 
 // actions
 const actions = {
-  getAllProducts ({ commit }) {
+  getAllProducts ({ commit, dispatch }) {
     shop.getProducts((products, err) => {
       if (err) {
         return console.error(err)
       }
 
       commit(types.RECEIVE_PRODUCTS, { products })
+
+      // dispatch the order loading action
+      dispatch('getAllOrders')
     })
   }
 }
