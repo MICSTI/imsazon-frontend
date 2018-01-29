@@ -9,7 +9,24 @@ const state = {
 
 // getters
 const getters = {
-  allOrders: state => state.all
+  allOrders: state => state.all,
+
+  orderTotalPrice: (state, getters) => (order) => {
+    // map order items
+    const items = order.items.map(item => {
+      const product = getters.getProductById(item.Id)
+      return {
+        name: product.name,
+        description: product.description,
+        quantity: item.Quantity,
+        price: product.price
+      }
+    })
+
+    return items.reduce((total, product) => {
+      return total + product.price * product.quantity
+    }, 0)
+  }
 }
 
 // actions
