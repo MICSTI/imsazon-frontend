@@ -12,8 +12,11 @@ const getters = {
 
 // actions
 const actions = {
-  setUser ({ commit }, user) {
+  setUser ({ commit, dispatch }, user) {
     commit(types.SET_USER, user)
+
+    // dispatch the order loading action
+    dispatch('getAllOrders')
   }
 }
 

@@ -14,15 +14,17 @@ const getters = {
 
 // actions
 const actions = {
-  getAllOrders ({ commit }) {
+  getAllOrders ({ commit, state }) {
+    if (store.state.auth.user === null) {
+      return
+    }
+
     const userId = store.state.auth.user.id
 
     shop.getOrders(userId, (orders, err) => {
       if (err) {
         return console.error(err)
       }
-
-      console.log('received orders from API', orders)
 
       commit(types.RECEIVE_ORDERS, { orders })
     })
