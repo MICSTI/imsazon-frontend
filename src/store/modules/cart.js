@@ -44,11 +44,14 @@ const actions = {
         return console.error('create order error', err)
       }
 
+      // get order Id from response
+      const orderId = data.order.id
+
       // empty cart
       commit(types.SET_CART_ITEMS, { items: [] })
 
       // go to orders page
-      router.push('/orders')
+      router.push(`/checkout/${orderId}`)
     })
   }
 }
