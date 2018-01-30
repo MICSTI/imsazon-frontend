@@ -44,15 +44,51 @@ const actions = {
         return console.error('create order error', err)
       }
 
+      // set checkout status
+      commit(types.SET_CHECKOUT_STATUS, 'created')
+
       // get order Id from response
       const orderId = data.order.id
-
-      // empty cart
-      commit(types.SET_CART_ITEMS, { items: [] })
 
       // go to orders page
       router.push(`/checkout/${orderId}`)
     })
+  },
+
+  payment ({ commit, getters }) {
+    // generate a random transactin ID
+    const transactionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+
+    // fake credit card number
+    const creditCard = '12345678912347890'
+
+    // get the amount from the store
+    const amount = getters.cartTotalPrice
+
+    // our currency
+    const currency = '€'
+
+    const payload = {
+      transactionId,
+      creditCard,
+      amount,
+      currency
+    }
+
+    shop.pay(payload, (data, err) => {
+      if (err) {
+        commit(types.SET_CHECKOUT_STATUS, 'paymentFailure')
+      } else {
+        commit(types.SET_CHECKOUT_STATUS, 'paymentSuccess')
+      }
+
+      // empty cart in any way
+      commit(types.SET_CART_ITEMS, { items: [] })
+    })
+  },
+
+  updateStatus ({ commit }, status) {
+    commit(types.SET_CHECKOUT_STATUS, status)
   }
 }
 

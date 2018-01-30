@@ -62,5 +62,15 @@ export default {
       .catch(err => {
         cb(null, err)
       })
+  },
+
+  pay (payload, cb) {
+    Vue.$http.post(`http://localhost:8605/payment/charge`, payload)
+      .then(res => {
+        cb(res.data, null)
+      })
+      .catch(err => {
+        cb(null, err)
+      })
   }
 }
