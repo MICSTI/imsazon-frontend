@@ -11,6 +11,10 @@ const state = {
 const getters = {
   allOrders: state => state.all,
 
+  getOrderById: state => (id) => {
+    return state.all.find(order => order.id === id)
+  },
+
   orderTotalPrice: (state, getters) => (order) => {
     // map order items
     const items = order.items.map(item => {

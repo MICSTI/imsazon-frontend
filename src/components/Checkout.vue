@@ -2,6 +2,13 @@
     <div>
       <h1>Checkout</h1>
       <div class="order-title">Order <span class="bold brand">{{$route.params.orderId}}</span></div>
+
+      <div class="order-items">
+        <ul>
+
+        </ul>
+      </div>
+
       <div class="payment-area" v-if="checkoutStatus === 'created'">
         <button @click="buy">Buy</button>
       </div>
@@ -29,6 +36,12 @@
 
   export default {
     computed: {
+      productById () {
+        return this.$store.getters.getProductById
+      },
+      orderById () {
+        return this.$store.getters.getOrderById
+      },
       ...mapGetters({
         checkoutStatus: 'checkoutStatus'
       })
