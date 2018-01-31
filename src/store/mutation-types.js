@@ -9,6 +9,7 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 
 // orders
 export const RECEIVE_ORDERS = 'RECEIVE_ORDERS'
+export const SET_ORDER_ID = 'SET_ORDER_ID'
 
 // auth
 export const SET_USER = 'RECEIVE_USER'

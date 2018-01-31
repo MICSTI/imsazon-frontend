@@ -8,12 +8,15 @@ import router from '../../router'
 // shape: [{id, quantity}]
 const state = {
   added: [],
-  checkoutStatus: null
+  checkoutStatus: null,
+  currentOrderId: null
 }
 
 // getters
 const getters = {
   checkoutStatus: state => state.checkoutStatus,
+
+  currentOrderId: state => state.currentOrderId,
 
   cartProducts: (state, getters, rootState) => {
     return state.added.map(({id, quantity}) => {
@@ -55,8 +58,8 @@ const actions = {
     })
   },
 
-  payment ({ commit, getters }) {
-    // generate a random transactin ID
+  payment ({ commit, getters, dispatch }) {
+    // generate a random transaction ID
     const transactionId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
     // fake credit card number
@@ -77,9 +80,9 @@ const actions = {
 
     shop.pay(payload, (data, err) => {
       if (err) {
-        commit(types.SET_CHECKOUT_STATUS, 'paymentFailure')
+        dispatch('updateStatus', 'paymentFailure')
       } else {
-        commit(types.SET_CHECKOUT_STATUS, 'paymentSuccess')
+        dispatch('updateStatus', 'paymentSuccess')
       }
 
       // empty cart in any way
@@ -87,8 +90,26 @@ const actions = {
     })
   },
 
-  updateStatus ({ commit }, status) {
+  setOrderId ({ commit }, orderId) {
+    commit(types.SET_ORDER_ID, orderId)
+  },
+
+  updateStatus ({ commit, getters }, status) {
     commit(types.SET_CHECKOUT_STATUS, status)
+
+    // also update the status on the microservice server
+    const payload = {
+      orderId: getters.currentOrderId,
+      status
+    }
+
+    shop.updateOrderStatus(payload, (data, err) => {
+      if (err) {
+        return console.error('could not update order status on backend', err)
+      }
+
+      console.log('successfully updated order status on backend', data)
+    })
   }
 }
 
@@ -129,6 +150,10 @@ const mutations = {
 
   [types.SET_CHECKOUT_STATUS] (state, status) {
     state.checkoutStatus = status
+  },
+
+  [types.SET_ORDER_ID] (state, orderId) {
+    state.currentOrderId = orderId
   }
 }
 

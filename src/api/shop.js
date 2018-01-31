@@ -72,5 +72,42 @@ export default {
       .catch(err => {
         cb(null, err)
       })
+  },
+
+  updateOrderStatus (payload, cb) {
+    // only update about the statuses we care about on the server
+    const status = payload.status
+
+    if (['paymentSuccess', 'paymentFailure'].indexOf(status) >= 0) {
+      let mappedStatus = 0
+
+      switch (status) {
+        case 'paymentSuccess':
+          mappedStatus = 1
+          break
+
+        case 'paymentFailure':
+          mappedStatus = 2
+          break
+
+        default:
+          break
+      }
+
+      const postPayload = {
+        status: mappedStatus
+      }
+
+      Vue.$http.post(`http://localhost:8605/order/update/${payload.orderId}`, postPayload)
+        .then(res => {
+          cb(res.data, null)
+        })
+        .catch(err => {
+          cb(null, err)
+        })
+    } else {
+      // just call the callback without any params
+      cb()
+    }
   }
 }

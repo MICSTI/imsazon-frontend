@@ -48,6 +48,9 @@
     },
     methods: {
       buy () {
+        // dispatch storing order id action
+        this.$store.dispatch('setOrderId', this.$route.params.orderId)
+
         // dispatch update checkout status action
         this.$store.dispatch('updateStatus', 'verifying')
 
