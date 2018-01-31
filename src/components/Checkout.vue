@@ -5,7 +5,11 @@
 
       <div class="order-items">
         <ul>
-
+          <li v-for="item in items" class="order-items-item">
+            <div class="order-item-name">{{item.name}}</div>
+            <div class="order-item-quantity">{{item.quantity}} x</div>
+            <div class="order-item-price">{{item.price | currency}}</div>
+          </li>
         </ul>
       </div>
 
@@ -35,6 +39,11 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
+    data () {
+      return {
+        items: []
+      }
+    },
     computed: {
       productById () {
         return this.$store.getters.getProductById
@@ -42,8 +51,19 @@
       orderById () {
         return this.$store.getters.getOrderById
       },
+      allOrders () {
+        return this.$store.getters.allOrders
+      },
       ...mapGetters({
-        checkoutStatus: 'checkoutStatus'
+        checkoutStatus: 'checkoutStatus',
+        cartProducts: 'cartProducts'
+      })
+    },
+    mounted () {
+      const cartProducts = this.cartProducts
+
+      cartProducts.forEach(product => {
+        this.items.push(product)
       })
     },
     methods: {
@@ -113,5 +133,38 @@
 
   .paragraph:last-child {
     margin-bottom: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0 3em;
+    padding: 0;
+  }
+
+  .order-items-item {
+    display: flex;
+    flex-direction: row;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0.25em;
+    padding: .4em;
+  }
+
+  .order-items-item:first-child {
+    border-top: 1px solid #ccc;
+  }
+
+  .order-item-name {
+    flex: 5 0;
+  }
+
+  .order-item-price {
+    flex: 1 0;
+    text-align: right;
+  }
+
+  .order-item-quantity {
+    flex: 1 0;
+    text-align: right;
   }
 </style>

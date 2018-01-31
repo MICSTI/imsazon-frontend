@@ -155,10 +155,6 @@
     content: ':'
   }
 
-  .order-detail-item-value {
-
-  }
-
   .order-items-item {
     display: flex;
     flex-direction: row;
