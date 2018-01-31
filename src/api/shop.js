@@ -101,6 +101,17 @@ export default {
       Vue.$http.post(`http://localhost:8605/order/update/${payload.orderId}`, postPayload)
         .then(res => {
           cb(res.data, null)
+
+          // also call the shipping API in case the order was successful (in a real world application, some logic on the server would take care of that)
+          if (status === 'paymentSuccess') {
+            this.shipOrder(payload.orderId, (shipData, shipErr) => {
+              if (shipErr) {
+                return console.error('failed to ship order', shipErr)
+              }
+
+              console.log('successfully shipped order', shipData)
+            })
+          }
         })
         .catch(err => {
           cb(null, err)
@@ -109,5 +120,15 @@ export default {
       // just call the callback without any params
       cb()
     }
+  },
+
+  shipOrder (orderId, cb) {
+    Vue.$http.post(`http://localhost:8605/ship/${orderId}`)
+      .then(res => {
+        cb(res.data, null)
+      })
+      .catch(err => {
+        cb(null, err)
+      })
   }
 }
